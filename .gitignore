@@ -1,0 +1,7 @@
+Debug/
+libssh/
+vcpkg/
+
+*.vcxproj
+*.filters
+*.user
