@@ -20,7 +20,7 @@ int main() {
   int port = 22;
 
   //setting the options of the session
-  ssh_options_set(my_ssh_session, SSH_OPTIONS_HOST, "matrix.senecacollege.ca");
+  ssh_options_set(my_ssh_session, SSH_OPTIONS_HOST, "mhisajib@matrix.senecacollege.ca");
   ssh_options_set(my_ssh_session, SSH_OPTIONS_PORT, &port);
   ssh_options_set(my_ssh_session, SSH_OPTIONS_LOG_VERBOSITY, &verbosity);
 
