@@ -1,4 +1,5 @@
 #define SSH_NO_CPP_EXCEPTIONS
+#define _CRT_SECURE_NO_WARNINGS
 #include <libssh/libsshpp.hpp>
 #include <iostream>
 //int verify_knownhost(ssh_session session);
@@ -16,7 +17,7 @@ int show_remote_files(ssh_session session)
     return rc;
   }
   std::cout << "Please enter a command to run: ";
-  std::cin >> command;
+  std::cin.getline(command, 49,'\n');
   //std::cout << command << std::endl;
   rc = ssh_channel_request_exec(channel, command);
   if (rc != SSH_OK)
@@ -90,9 +91,11 @@ int main() {
   }
   */
   //authenticate ourselves
-  std::cout << "Please enter your username: ";
+  std::cout << "Enter your Matrix Credentials" << std::endl;
+  std::cout << "-----------------------------" << std::endl;
+  std::cout << "Username: ";
   std::cin >> userName;
-  std::cout << "Please enter your password: ";
+  std::cout << "Password: ";
   std::cin >> password;
   rc = ssh_userauth_password(my_ssh_session, userName, password);
   if (rc != SSH_AUTH_SUCCESS) {
@@ -112,7 +115,7 @@ int main() {
       (choice == 'Y' || choice == 'y') ? again = true : again = false;
     } while (again);
   }
-
+  std::cout << "Goodbye!" << std::endl;
   ssh_disconnect(my_ssh_session);
   ssh_free(my_ssh_session);
   return 0;
