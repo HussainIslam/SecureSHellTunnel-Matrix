@@ -1,6 +1,7 @@
 #define SSH_NO_CPP_EXCEPTIONS
 #define _CRT_SECURE_NO_WARNINGS
 #include <libssh/libsshpp.hpp>
+#include <string>
 #include <iostream>
 //int verify_knownhost(ssh_session session);
 int show_remote_files(ssh_session session)
@@ -17,7 +18,8 @@ int show_remote_files(ssh_session session)
     return rc;
   }
   std::cout << "Please enter a command to run: ";
-  std::cin.getline(command, 49,'\n');
+  std::cin >> command;
+  //std::cin.getline(command, 49,'\n');
   //std::cout << command << std::endl;
   rc = ssh_channel_request_exec(channel, command);
   if (rc != SSH_OK)
@@ -71,7 +73,7 @@ int main() {
   //setting the hostname
   ssh_options_set(my_ssh_session, SSH_OPTIONS_HOST, host);
   ssh_options_set(my_ssh_session, SSH_OPTIONS_PORT, &port);
-  ssh_options_set(my_ssh_session, SSH_OPTIONS_LOG_VERBOSITY, &verbosity);
+  //ssh_options_set(my_ssh_session, SSH_OPTIONS_LOG_VERBOSITY, &verbosity);
 
   //connect to server
   rc = ssh_connect(my_ssh_session);
