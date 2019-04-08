@@ -18,8 +18,10 @@ int show_remote_files(ssh_session session)
     return rc;
   }
   std::cout << "Please enter a command to run: ";
-  std::cin >> command;
-  //std::cin.getline(command, 49,'\n');
+  //std::cin >> command;
+  std::cin.clear();
+  std::cin.ignore(1000, '\n');
+  std::cin.getline(command, 49,'\n');
   //std::cout << command << std::endl;
   rc = ssh_channel_request_exec(channel, command);
   if (rc != SSH_OK)
